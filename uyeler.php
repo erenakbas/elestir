@@ -1,7 +1,7 @@
 <?php
 session_start();
 if(isset($_SESSION["login"])){
-header("Location:anasayfa.php");
+header("Location:index.php");
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -21,10 +21,10 @@ include("db.php");
 <body>
 <div class="zemin">
 <div class="banner">
-<div class="ikon"><a href="anasayfa.php"> <img src="ikon.jpg"></a></div>
+<div class="ikon"><a href="index.php"> <img src="ikon.jpg"></a></div>
 <div class="header-search">
 <form id="search" name="arama" method="post" action="ara.php">
-<input type="text" class="search" id="headerSearch" value="" name="arama" style="opacity: 0.7;"> 
+<input type="text" class="search" id="headerSearch" value="" name="arama" required style="opacity: 0.7;"> 
 <input type="submit" class="button" value="arama yap" /></form></div>
 
 <?php 
@@ -86,13 +86,22 @@ echo '</td>
   
    <div class="uyeol_logo"> <h1>Üye ol</h1></div>
    <div class="girisyap_logo"> <h1>Giriş Yap</h1></div>
+     <div class="uyeol_arkaplan">
+	  <form method="post" action="kayit.php" enctype="multipart/form-data">
+			<div class="foto">
+	
+			<img src="imgprofil/default.jpg"> 
+		
+		<input type="file" name="resim" required>
    
-  <div class="uyeol_arkaplan">
-  <form method="post" action="kayit.php" >
- <div class="k_adi"><h3>Kullanıcı adı:<input type="text" name="k_adi" id="k_adi" class="kutu"></h3></div>
-  <div class="email"><h3>Email:<input type="email" name="email" id="email" class="kutu"></h3></div>
-  <div class="sifre"><h3>Şifre:<input type="password" name="sifre" id="sifre" class="kutu"></h3></div>
-  <div class="sifre_t"><h3>Şifre Tekrarı:<input type="password" name="sifretekrar" id="sifretekrar" class="kutu"></h3></div>
+			</div>
+   
+
+ 
+ <div class="k_adi"><h3>Kullanıcı adı:<input type="text" name="k_adi" id="k_adi" required class="kutu"></h3></div>
+  <div class="email"><h3>Email:<input type="email" name="email" id="email" required class="kutu"></h3></div>
+  <div class="sifre"><h3>Şifre:<input type="password" name="sifre" id="sifre" required class="kutu"></h3></div>
+  <div class="sifre_t"><h3>Şifre Tekrarı:<input type="password" name="sifretekrar" required id="sifretekrar" class="kutu"></h3></div> 
   <div class="k_ol"><button type="submit" name="uyeol" class="buttonuyeol">Üye Ol</button> </form></div>
  
   </div>
@@ -146,6 +155,16 @@ echo "<h4>'Kullanici Adi/Sifre Yanlis'</h4>";
 <?php
 if(isset($_GET['format'])){
 echo "<h4>'Şifreniz En Az 8 Karakter ve En Az 1 Büyük Harf İçermek Zorundadır!'</h4>";
+}
+?>
+<?php
+if(isset($_GET['file'])){
+echo "<h4>'Resim Uygun Formatta değil'</h4>";
+}
+?>
+<?php
+if(isset($_GET['buyuk'])){
+echo "<h4>'Dosya Çok Büyük'</h4>";
 }
 ?>
 </div>

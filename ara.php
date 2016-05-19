@@ -11,7 +11,7 @@ include("db.php");
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Untitled Document</title>
-<link href="anasayfa.css" rel="stylesheet" type="text/css" />
+<link href="index.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 
 </style>
@@ -20,10 +20,10 @@ include("db.php");
 <body>
 <div class="zemin">
 <div class="banner">
-<div class="ikon"><a href="anasayfa.php"> <img src="ikon.jpg"></a></div>
+<div class="ikon"><a href="index.php"> <img src="ikon.jpg"></a></div>
 <div class="header-search">
 <form id="search" name="arama" method="post" action="ara.php">
-<input type="text" class="search" id="headerSearch" value="" name="arama" style="opacity: 0.7;"> 
+<input type="text" class="search" id="headerSearch" value="" name="arama" required style="opacity: 0.7;"> 
 <input type="submit" class="button" value="arama yap" /></form>
 </div>
 
@@ -91,13 +91,14 @@ echo '</td>
   <tr><td colspan="6"><h2>Arama Sonuçları</h2></td></tr>
   </tr>
   </table>
-  <table border="0">
+
   <?php
   
  
   
   
 
+  
 $arama=$_POST['arama'];  
 $ara=mysql_query("SELECT * FROM icerik WHERE icerik_adi like '%$arama%'"); 
 $sonuc = mysql_num_rows($ara); 
@@ -106,8 +107,8 @@ while($yaz=mysql_fetch_array($ara)){
 
 
 
-echo '<td align="center"><a href="ayrintilar.php?id='.$yaz['id'].'"><img src="'.$yaz['icerik_resmi'].'" width="150" /></a>
-    <p class="style2"><a href="ayrintilar.php?id='.$yaz['id'].'" class="style3">Yorum yap</a> <a href="ayrintilar.php?id='.$yaz['id'].'" class="style3">  Beğen</a></p></td>
+echo '<div class="doldur"><a href="ayrintilar.php?id='.$yaz['id'].'"><img src="'.$yaz['icerik_resmi'].'" width="150" /></a>
+    <p class="style2"><a href="ayrintilar.php?id='.$yaz['id'].'" class="style3">Yorum yap</a> <a href="ayrintilar.php?id='.$yaz['id'].'" class="style3">  Beğen</a></p></div>
 '; 
 
 
@@ -118,16 +119,18 @@ echo '<h2 id="uyari">"'.$arama.'" İle İlgili Bir Sonuç Bulunamadı!</h2>';
 }
 
 ?>
-<table>
+
 
    </div>
 
 
 
  </div>
+ <div style="clear:both"></div>
  <div class="alt">
  </div>
 
 </div>
+<div style="clear:both"></div>
 </body>
 </html>

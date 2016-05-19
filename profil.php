@@ -20,10 +20,10 @@ include("db.php");
 <body>
 <div class="zemin">
 <div class="banner">
-<div class="ikon"><a href="anasayfa.php"> <img src="ikon.jpg"></a></div>
+<div class="ikon"><a href="index.php"> <img src="ikon.jpg"></a></div>
 <div class="header-search">
 <form id="search" name="arama" method="post" action="ara.php">
-<input type="text" class="search" id="headerSearch" value="" name="arama" style="opacity: 0.7;"> 
+<input type="text" class="search" id="headerSearch" value="" name="arama" required style="opacity: 0.7;"> 
 <input type="submit" class="button" value="arama yap" /></form></div>
 
 
@@ -85,6 +85,42 @@ echo '</td>
 </div>
   <div class="orta_menu">
   
+  <div class="fotoprofil">
+  <?php
+  
+  
+   if(isset($_SESSION["login"])){
+  
+  if(isset($_GET['kul_adi']))
+{
+  $cek=mysql_query("select * from uyeler where k_adi='".$_GET["kul_adi"]."'");
+  while($yaz=mysql_fetch_array($cek)){
+ 
+  echo '<img src="'.$yaz['resim'].'"width="160" height="200">';
+}}
+else{
+
+  $cek=mysql_query("select * from uyeler where k_adi='".$_SESSION["k_adi"]."'");
+  while($yaz=mysql_fetch_array($cek)){
+   
+   echo '<img src="'.$yaz['resim'].'"width="160" height="200">';
+  }
+}
+
+  
+ 
+}  
+ else{
+  echo '<a href="uyeler.php"><h3>Bu Sayfayı Görmeye Yetkiniz Yok Lütfen Giriş Yapınız</h3></a>';
+  }
+  
+  
+  
+  
+  ?>
+  </div>
+
+  
   <div class="p_bilgileri">
   <?php
 
@@ -96,6 +132,7 @@ echo '</td>
   while($yaz=mysql_fetch_array($cek)){
   echo '<h4>Kullanıcı Adı<p></h4><h4>'.$yaz['k_adi'].'</h4>';
   echo '<h4>E-Mail<p></h4><h4>'.$yaz['email'].'</h4>';
+  
 }}
 else{
 
@@ -103,6 +140,7 @@ else{
   while($yaz=mysql_fetch_array($cek)){
     echo '<h4>Kullanıcı Adı<p></h4><h4>'.$yaz['k_adi'].'</h4>';
   echo '<h4>E-Mail<p></h4><h4>'.$yaz['email'].'</h4>';
+  
   }
 }
 

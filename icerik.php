@@ -11,19 +11,19 @@ include("db.php");
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Untitled Document</title>
-<link href="anasayfa.css" rel="stylesheet" type="text/css" />
+<link href="index.css" rel="stylesheet" type="text/css" />
 <style type="text/css">
 
 </style>
 </head>
 
 <body>
-<div class="zemin">
+
 <div class="banner">
-<div class="ikon"><a href="anasayfa.php"> <img src="ikon.jpg"></a></div>
+<div class="ikon"><a href="index.php"> <img src="ikon.jpg"></a></div>
 <div class="header-search">
 <form id="search" name="arama" method="post" action="ara.php">
-<input type="text" class="search" id="headerSearch" value="" name="arama" style="opacity: 0.7;"> 
+<input type="text" class="search" id="headerSearch" value="" name="arama" required style="opacity: 0.7;"> 
 <input type="submit" class="button" value="arama yap" /></form></div>
 
 <?php 
@@ -50,7 +50,7 @@ echo '<td><a href="icerik.php?id='.$yaz['id'].'"/><h2>'.$yaz['kategori_adi'].'</
 
 </tr></table></div>
 
-<div class="orta">
+
 <div class="sol_menu">
 <table cellpadding="0" cellspacing="0">
 <tr>
@@ -89,15 +89,15 @@ echo '  <table class="two" border="0"><tr><td colspan="4"><h2>'.$yaz['kategori_a
 }
 
   ?>
-</tr><tr></td>
+</tr><tr></td> </table>
  <?php
 $cek=mysql_query("select * from icerik where kategori_id = ".$id);
 
 while($yaz = mysql_fetch_array($cek))
 {
 
-echo '  <td align="center"><a href="ayrintilar.php?id='.$yaz['id'].'"><img src="'.$yaz['icerik_resmi'].'" width="150" /></a>
-    <p class="style2"><a href="ayrintilar.php?id='.$yaz['id'].'" class="style3">Yorum yap</a> <a href="ayrintilar.php?id='.$yaz['id'].'" class="style3">  Beğen</a></p></td>';
+echo ' <div class="doldur"><a href="ayrintilar.php?id='.$yaz['id'].'"><img src="'.$yaz['icerik_resmi'].'" width="150" /></a>
+    <p class="style2"><a href="ayrintilar.php?id='.$yaz['id'].'" class="style3">Yorum yap</a> <a href="ayrintilar.php?id='.$yaz['id'].'" class="style3">  Beğen</a></p></div>';
 
 }
 
@@ -107,16 +107,16 @@ echo '  <td align="center"><a href="ayrintilar.php?id='.$yaz['id'].'"><img src="
 	
 	
   
-  </table>
+ 
   
    </div>
 
 
 
- </div>
+ <div style="clear:both"></div>
  <div class="alt">
  </div>
 
-</div>
+<div style="clear:both"></div>
 </body>
 </html>

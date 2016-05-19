@@ -25,9 +25,9 @@ include("db.php");
 
 <div class="zemin">
 <div class="banner">
-<div class="ikon"><a href="anasayfa.php"> <img src="ikon.jpg"></a></div>
+<div class="ikon"><a href="index.php"> <img src="ikon.jpg"></a></div>
 <div class="header-search"><form id="search" name="arama" method="post" action="ara.php">
-<input type="text" class="search" id="headerSearch" value="" name="arama" style="opacity: 0.7;"> 
+<input type="text" class="search" id="headerSearch" value="" name="arama" required style="opacity: 0.7;"> 
 <input type="submit" class="button" value="arama yap" /></form></div>
 
 <?php 
@@ -90,7 +90,7 @@ echo '</td>
 <form action="begen.php" method="post">
 
 <input type="hidden" name="icerik_id" value="<?php echo $id ?>">
-<input type="submit" value="Beğen" class="yy_buton">
+<input type="submit" value="Beğen" class="b_buton">
 </form>
 
 <?php 
@@ -106,10 +106,10 @@ echo 'Buna Yetkiniz Yok';
 }
 else
 {
-	$kul_adi=mysql_query("select k_adi from uyeler where id='".$yaz['uye_id']."'");
+	$kul_adi=mysql_query("select * from uyeler where id='".$yaz['uye_id']."'");
 	while(($yazz = mysql_fetch_array($kul_adi)))
 	{
-		echo '<a href="profil.php?kul_adi='.$yazz['k_adi'].'"><h4>'.$yazz['k_adi'].' Bunu Beğendi</h4></a>';
+		echo '<a href="profil.php?kul_adi='.$yazz['k_adi'].'"><h4><img src="'.$yazz['resim'].'"width="35" height="35">  '.$yazz['k_adi'].' Bunu Beğendi</h4></a>';
 		
 	}
 
@@ -158,10 +158,10 @@ echo 'Buna Yetkiniz Yok';
 }
 else
 {
-	$kul_adi=mysql_query("select k_adi from uyeler where id='".$yaz['uye_id']."'");
+	$kul_adi=mysql_query("select * from uyeler where id='".$yaz['uye_id']."'");
 	while(($yazz = mysql_fetch_array($kul_adi)))
 	{
-		echo '<a href="profil.php?kul_adi='.$yazz['k_adi'].'"><h4>'.$yazz['k_adi'].' Bunu Beğendi</h4></a>';
+		echo '<a href="profil.php?kul_adi='.$yazz['k_adi'].'"><h4><img src="'.$yazz['resim'].'"width="35" height="35">  '.$yazz['k_adi'].' Bunu Beğendi</h4></a>';
 		
 	}
 
@@ -183,14 +183,14 @@ $cek=mysql_query("select * from yorumlar where icerik_id='$id' order by id desc 
 while(($yaz = mysql_fetch_array($cek)))
 {
 if($yaz['uye_id'] == 0){
-echo '<h4>Misafir</h4>'.$yaz['yorum'];
+echo '<h4><img src="imgprofil/default.jpg""width="35" height="35"> Misafir</h4>'.$yaz['yorum'];
 
 }
 else{
-$kul_adi=mysql_query("select k_adi from uyeler where id='".$yaz['uye_id']."'");
+$kul_adi=mysql_query("select * from uyeler where id='".$yaz['uye_id']."'");
 while(($yazz = mysql_fetch_array($kul_adi))){
 
-echo '<a href="profil.php?kul_adi='.$yazz['k_adi'].'"><h4>'.$yazz['k_adi'].' Diyor ki:</h4></a>'.$yaz['yorum'];
+echo '<a href="profil.php?kul_adi='.$yazz['k_adi'].'"><h4><img src="'.$yazz['resim'].'"width="35" height="35">'.$yazz['k_adi'].' Diyor ki:</h4></a>'.$yaz['yorum'];
 
 }
 }
@@ -226,14 +226,14 @@ $cek=mysql_query("select * from yorumlar where icerik_id='$id' order by id desc"
 while(($yaz = mysql_fetch_array($cek)))
 {
 if($yaz['uye_id'] == 0){
-echo '<h4>Misafir</h4>'.$yaz['yorum'];
+echo '<h4><img src="imgprofil/default.jpg""width="35" height="35">Misafir</h4>'.$yaz['yorum'];
 
 }
 else{
-$kul_adi=mysql_query("select k_adi from uyeler where id='".$yaz['uye_id']."'");
+$kul_adi=mysql_query("select * from uyeler where id='".$yaz['uye_id']."'");
 while(($yazz = mysql_fetch_array($kul_adi))){
 
-echo '<a href="profil.php?kul_adi='.$yazz['k_adi'].'"><h4>'.$yazz['k_adi'].' Diyor ki:</h4></a>'.$yaz['yorum'];
+echo '<a href="profil.php?kul_adi='.$yazz['k_adi'].'"><h4><img src="'.$yazz['resim'].'"width="35" height="35">'.$yazz['k_adi'].' Diyor ki:</h4></a>'.$yaz['yorum'];
 
 }
 }

@@ -14,7 +14,7 @@ if(($yaz = mysql_fetch_array($sql_check)))
     $_SESSION["login"] = "true";
     $_SESSION["k_adi"] = $k_adi;
     $_SESSION["uye_id"] = $yaz['id'];
-    header("Location:anasayfa.php");
+    header("Location:index.php");
 }
 else {
     if($k_adi=="" or $sifre=="") {
